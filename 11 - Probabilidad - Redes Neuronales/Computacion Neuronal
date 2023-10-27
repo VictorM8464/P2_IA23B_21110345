@@ -1,0 +1,26 @@
+import tensorflow as tf
+from tensorflow import keras
+
+# Crear un modelo secuencial
+model = keras.Sequential([
+    keras.layers.Dense(64, activation='relu', input_shape=(2,)),
+    keras.layers.Dense(64, activation='relu'),
+    keras.layers.Dense(1, activation='sigmoid')
+])
+
+# Compilar el modelo
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+
+# Datos de entrenamiento (ejemplo)
+X_train = [[0, 0], [0, 1], [1, 0], [1, 1]]
+y_train = [0, 1, 1, 0]
+
+# Entrenar el modelo
+model.fit(X_train, y_train, epochs=1000)
+
+# Realizar predicciones
+predictions = model.predict(X_train)
+
+print("Predicciones:")
+for i in range(len(X_train)):
+    print(f"Entrada: {X_train[i]}, Predicción: {predictions[i][0]:.2f}")
