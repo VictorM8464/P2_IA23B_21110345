@@ -1,0 +1,18 @@
+import nltk
+from nltk.corpus import brown
+from nltk.probability import FreqDist
+
+nltk.download('brown')
+
+# Cargar el corpus Brown
+corpus = brown.words()
+
+# Calcular la frecuencia de las palabras
+fdist = FreqDist(corpus)
+
+# Obtener las 10 palabras más comunes
+common_words = fdist.most_common(10)
+
+print("Las 10 palabras más comunes en el corpus Brown:")
+for word, freq in common_words:
+    print(f"{word}: {freq} veces")
